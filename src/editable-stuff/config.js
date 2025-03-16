@@ -95,31 +95,39 @@ const leadership = {
   }
 };
 
-// SKILLS SECTION
-const skills = {
-  show: true,
-  heading: "Skills",
-  hardSkills: [
-    { name: "Python", value: 90 },
-    { name: "SQL", value: 75 },
-    { name: "Data Structures", value: 85 },
-    { name: "C/C++", value: 65 },
-    { name: "JavaScript", value: 90 },
-    { name: "React", value: 65 },
-    { name: "HTML/CSS", value: 55 },
-    { name: "C#", value: 80 },
-  ],
-  softSkills: [
-    { name: "Goal-Oriented", value: 80 },
-    { name: "Collaboration", value: 90 },
-    { name: "Positivity", value: 75 },
-    { name: "Adaptability", value: 85 },
-    { name: "Problem Solving", value: 75 },
-    { name: "Empathy", value: 90 },
-    { name: "Organization", value: 70 },
-    { name: "Creativity", value: 90 },
-  ],
+// Skills.jsx
+import React from 'react';
+
+const Skills = () => {
+  return (
+    <section id="skills" className="py-16 bg-gray-800">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* <h2 className="text-4xl font-bold text-center text-white mb-8">Skills</h2> */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/sql.png" alt="SQL" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">SQL</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/python.png" alt="Python" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">Python</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/data-configuration.png" alt="ETL" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">ETL Tools</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/cloud.png" alt="Cloud" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">Cloud Platforms</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
+
+export default Skills;
+
 
 // GET IN TOUCH SECTION
 const getInTouch = {
@@ -152,4 +160,4 @@ const experiences = {
 //   show: false,
 // };
 
-export { navBar, mainBody, about, repos, skills, leadership, getInTouch, experiences };
+export { navBar, mainBody, about, repos, leadership, getInTouch, experiences };

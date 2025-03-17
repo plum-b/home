@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { Jumbotron } from "./migration";
+import emailjs from '@emailjs/browser';
 import "./GetInTouch.css";
 
 const GetInTouch = ({ heading }) => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,14 +13,30 @@ const GetInTouch = ({ heading }) => {
     message: ""
   });
   const [showAlert, setShowAlert] = useState(false);
+  const [alertVariant, setAlertVariant] = useState('success');
+  const [alertMessage, setAlertMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically handle the form submission
-    // For now, we'll just show a success message
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    emailjs.sendForm(
+      'YOUR_SERVICE_ID', // You'll need to replace this
+      'YOUR_TEMPLATE_ID', // You'll need to replace this
+      form.current,
+      'YOUR_PUBLIC_KEY' // You'll need to replace this
+    )
+    .then((result) => {
+      setAlertVariant('success');
+      setAlertMessage('Thank you for your message! I\'ll get back to you soon.');
+      setShowAlert(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setShowAlert(false), 3000);
+    }, (error) => {
+      setAlertVariant('danger');
+      setAlertMessage('Sorry, there was an error sending your message. Please try again.');
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+    });
   };
 
   const handleChange = (e) => {
@@ -39,16 +57,16 @@ const GetInTouch = ({ heading }) => {
           <Col md={8} lg={6}>
             <div className="contact-form-wrapper">
               {showAlert && (
-                <Alert variant="success" className="mb-4">
-                  Thank you for your message! I'll get back to you soon.
+                <Alert variant={alertVariant} className="mb-4">
+                  {alertMessage}
                 </Alert>
               )}
-              <Form onSubmit={handleSubmit}>
+              <Form ref={form} onSubmit={handleSubmit}>
                 <Form.Group className="mb-4">
                   <Form.Control
                     type="text"
                     placeholder="Your Name"
-                    name="name"
+                    name="user_name"
                     value={formData.name}
                     onChange={handleChange}
                     required
@@ -60,7 +78,7 @@ const GetInTouch = ({ heading }) => {
                   <Form.Control
                     type="email"
                     placeholder="Your Email"
-                    name="email"
+                    name="user_email"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -92,6 +110,13 @@ const GetInTouch = ({ heading }) => {
                     className="contact-input"
                   />
                 </Form.Group>
+
+                {/* Hidden field for recipient email */}
+                <input 
+                  type="hidden" 
+                  name="recipient_email" 
+                  value="afifnahas1998@gmail.com"
+                />
 
                 <div className="text-center">
                   <Button 

@@ -95,11 +95,46 @@ const leadership = {
   }
 };
 
+<<<<<<< HEAD
 // SKILLS SECTION
 const skills = {
   show: true,
   heading: "Tech Stack",
+=======
+// Skills.jsx
+import React from 'react';
+
+const Skills = () => {
+  return (
+    <section id="skills" className="py-16 bg-gray-800">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* <h2 className="text-4xl font-bold text-center text-white mb-8">Skills</h2> */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/sql.png" alt="SQL" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">SQL</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/python.png" alt="Python" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">Python</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/data-configuration.png" alt="ETL" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">ETL Tools</p>
+          </div>
+          <div className="text-center">
+            <img src="https://img.icons8.com/color/100/000000/cloud.png" alt="Cloud" className="mx-auto img-logo" />
+            <p className="mt-4 text-xl">Cloud Platforms</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+>>>>>>> fc46d8157058a823fe3dc924d17133406bdc2ff7
 };
+
+export default Skills;
+
 
 // GET IN TOUCH SECTION
 const getInTouch = {
@@ -132,4 +167,8 @@ const experiences = {
 //   show: false,
 // };
 
+<<<<<<< HEAD
 export { navBar, mainBody, about, repos, skills, getInTouch, experiences, leadership };
+=======
+export { navBar, mainBody, about, repos, leadership, getInTouch, experiences };
+>>>>>>> fc46d8157058a823fe3dc924d17133406bdc2ff7
